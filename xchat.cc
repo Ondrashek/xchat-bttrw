@@ -57,37 +57,37 @@ namespace xchat {
 
 	return 0;
     }
-    
+
     /**
-     * PARSE CSRF - because Gym 
+     * PARSE CSRF - because Gym
      * \param rid Room ID.
      * \return token hash from textarea
-     */  
+     */
 
     string XChat::gettoken(const string& rid)
     {
-    
+
       XChatAPI s;
-      string l; 
-    
-      try { 
-       
+      string l;
+
+      try {
+
 	    int ret = request_GET(s, SERVER_MODCHAT,
 		    "modchat?op=textpageng&skin=2&js=1&rid=" + rid, PATH_AUTH);
-	    if (ret != 200)                             
+	    if (ret != 200)
 		  throw runtime_error("Not HTTP 200 Ok while posting msg");
 	   } catch (runtime_error &e) {
 	    throw runtime_error(string(e.what()) + " - " + lastsrv_broke());
-	   }  
-     
+	   }
+
      while(s.getline(l))
-     {      
+     {
 
       static string pat4 = " name=\"wtkn\"";
       string::size_type wtkn;
       if ((wtkn = l.find(pat4)) != string::npos)
-      {   
-      
+      {
+
         static const string VALUE = "value";
         static const char DOUBLE_QUOTE = '"';
 
@@ -104,23 +104,23 @@ namespace xchat {
 
                 if (end != string::npos)
                 {
-                  
+
                   result = l.substr(beg + 1, end - beg - 1);
                   return result;
-                
+
                 }
-            
+
             }
-        
+
         }
 
-      } 
-     
-     } 
-     
+      }
+
+     }
+
      return "";
-    
-    }    
+
+    }
 
     /**
      * Go through #sendq and send messages, take flood protection and
@@ -267,7 +267,7 @@ namespace xchat {
 	for (rooms_t::iterator i = rooms.begin(); i != rooms.end(); i++) {
 	    if (time(0) - i->second.last_roominfo >= roominfo_interval) {
 		room old = i->second;
-		
+
 		try { getroominfo(i->second); }
 		catch (runtime_error &e) {
 		    auto_ptr<EvRoomError> f(new EvRoomError);
@@ -309,7 +309,7 @@ namespace xchat {
 		    e->removed = removed;
 		    recvq_push((auto_ptr<Event>) e);
 		}
-		
+
 		i->second.last_roominfo = time(0);
 	    }
 	}
@@ -389,7 +389,7 @@ namespace xchat {
 
 	return false;
     }
-    
+
     /**
      * Check if given user is permanent admin in a specified room.
      * (but not admin nor xchat admin)

@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
 	    << "  takes effect on all following proxys)" << endl;
 	return -1;
     }
-    
+
     bool single = false;
 
     int arg = 1;

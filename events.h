@@ -47,7 +47,7 @@ namespace xchat {
 	    virtual const string & getrid() { return rid; }
 	    virtual ~EvRoomOther() {}
     };
-    
+
     class EvRoomError : public EvRoomOther {
 	    friend class XChat;
 	private:
@@ -58,7 +58,7 @@ namespace xchat {
 	    virtual const bool & isfatal() { return fatal; }
 	    virtual ~EvRoomError() {}
     };
-    
+
     class EvRoomMsg : public EvRoomOther {
 	    friend class XChat;
 	protected:
@@ -67,7 +67,7 @@ namespace xchat {
 	    virtual const x_nick & getsrc() { return src; }
 	    virtual ~EvRoomMsg() {}
     };
-    
+
     class EvRoomJoin : public EvRoomOther {
 	    friend class XChat;
 	protected:
@@ -76,7 +76,7 @@ namespace xchat {
 	    virtual const x_nick & getsrc() { return src; }
 	    virtual ~EvRoomJoin() {}
     };
-    
+
     class EvRoomLeave : public EvRoomOther {
 	    friend class XChat;
 	protected:
@@ -87,7 +87,7 @@ namespace xchat {
 	    virtual const string & getreason() { return reason; }
 	    virtual ~EvRoomLeave() {}
     };
-    
+
     class EvRoomKick : public EvRoomOther {
 	    friend class XChat;
 	protected:
@@ -100,7 +100,7 @@ namespace xchat {
 	    virtual const x_nick & gettarget() { return target; }
 	    virtual ~EvRoomKick() {}
     };
-    
+
     class EvRoomAdvert : public EvRoomOther {
 	    friend class XChat;
 	protected:
@@ -109,7 +109,7 @@ namespace xchat {
 	    virtual const string & getlink() { return link; }
 	    virtual ~EvRoomAdvert() {}
     };
-    
+
     /**
      * \brief A message from the System nick.
      */
@@ -118,7 +118,7 @@ namespace xchat {
 	public:
 	    virtual ~EvRoomSysMsg() {}
     };
-    
+
     /**
      * \brief A system message in the room - in fact, every unparsed text in
      * the room.
@@ -128,7 +128,7 @@ namespace xchat {
 	public:
 	    virtual ~EvRoomSysText() {}
     };
-    
+
     /**
      * \brief A line of history (backlog) shown upon entering the room.
      */
@@ -141,13 +141,13 @@ namespace xchat {
 	    virtual const string & gettarget() { return target; }
 	    virtual ~EvRoomHistoryMsg() {}
     };
-    
+
     class EvRoomIdlerMsg : public EvRoomOther {
 	    friend class XChat;
 	public:
 	    virtual ~EvRoomIdlerMsg() {}
     };
-    
+
     class EvRoomAdminChange : public EvRoomOther {
 	    friend class XChat;
 	protected:
@@ -163,7 +163,7 @@ namespace xchat {
 	    virtual const string & getnow() { return now; }
 	    virtual ~EvRoomAdminChange() {}
     };
-    
+
     class EvRoomAdminsChange : public EvRoomOther {
 	    friend class XChat;
 	protected:
@@ -204,7 +204,7 @@ namespace xchat {
 	    virtual const string & getweb() { return web; }
 	    virtual ~EvRoomTopicChange() {}
     };
-    
+
     class EvSuperAdminsChange : public Event {
 	    friend class XChat;
 	protected:
@@ -220,13 +220,13 @@ namespace xchat {
 	public:
 	    virtual ~EvError() {}
     };
-    
+
     class EvNeedRelogin : public EvError {
 	    friend class XChat;
 	public:
 	    virtual ~EvNeedRelogin() {}
     };
-    
+
     class EvSysMsg : public Event {
 	    friend class XChat;
 	public:
@@ -269,7 +269,7 @@ namespace xchat {
 	    }
 	    virtual EvKill * clone() { return new EvKill(*this); }
             virtual ~EvKill() {}
-    };    
+    };
 }
 
 #include "xchat.h"

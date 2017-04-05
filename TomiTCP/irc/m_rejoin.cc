@@ -29,7 +29,7 @@ void m_rejoin_msg(string snick, string shost, vector<string> cmd)
 	S(f,"JOIN %s\n",cmd[1].c_str());
     }
 
-    if ((cmd[0] == "471" || cmd[0] == "473" || 
+    if ((cmd[0] == "471" || cmd[0] == "473" ||
 		cmd[0] == "474" || cmd[0] == "475")
 	    && !strcasecmp(cmd[1].c_str(),nick.c_str())) {
 	sleep(rj_sleep);

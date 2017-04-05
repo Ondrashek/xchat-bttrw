@@ -12,12 +12,12 @@ Index: Makefile
 +REVISIONS=-DREVISION=\"$(shell svn info ${SVN_DIR}/xchat-bttrw/head| perl -ne 'if(/Last Changed Rev: (\d+)/){print $$1;}')\" \
 +	-DTOMITCP_REV=\"$(shell svn info ${SVN_DIR}/TomiTCP/head | perl -ne 'if(/Last Changed Rev: (\d+)/){print $$1;}')\"
  RSRC=
- 
+
  LINK.o=$(CXX) $(LDFLAGS) $(TARGET_ARCH)
 @@ -73,7 +74,7 @@
                    charset.o list.o ison.o userinfo.o superadmins.o cluster.o
  	$(AR) rsv $@ $?
- 
+
 -gate: gate.o setproctitle.o libxchat-bttrw.a TomiTCP/libTomiTCP.a $(RSRC)
 +gate: gate.o setproctitle.o libxchat-bttrw.a $(RSRC)
  	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
@@ -26,13 +26,13 @@ Index: Makefile
 @@ -86,9 +87,6 @@
  	$(RM) libxchat-bttrw.a gate *.o
  #	$(MAKE) -C TomiTCP clean
- 
+
 -TomiTCP/libTomiTCP.a: dummy
 -	$(MAKE) -C TomiTCP DEBUG=$(DEBUG)
 -
  %.o: %.rc
  	$(WINDRES) -o $@ $^
- 
+
 Index: gate.cc
 ===================================================================
 --- gate.cc	(revision 589)
@@ -40,7 +40,7 @@ Index: gate.cc
 @@ -333,7 +333,7 @@
  			fprintf(*c, ":%s 375 %s :- %s Message of the Day -\n", me,
  				nick.c_str(), me);
- 
+
 -			ifstream copyright("COPYRIGHT");
 +			ifstream copyright("/usr/share/xchat-bttrw/COPYRIGHT");
  			if (copyright) {

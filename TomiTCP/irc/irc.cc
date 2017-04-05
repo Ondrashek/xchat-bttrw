@@ -13,7 +13,7 @@ using namespace std;
 
 namespace std {
 
-// for restart    
+// for restart
 char **my_argv;
 
 net::TomiTCP sock, &f = sock /* i'm fuckin' lazy to rewrite almost all of the code */;
@@ -449,7 +449,7 @@ void docmd(string &snick, string &cmd)
 	}
 	return;
     }
-    
+
     if (cl[0] == ".unloadmodule") {
 	if (cl.size() != 2) {
 	    S(f,"PRIVMSG %s :Need 1 parameters\n",snick.c_str());

@@ -101,13 +101,13 @@ retry:
     {
 	if (!really_logout)
 	    return;
-    
+
 	while (rooms.begin() != rooms.end()) {
 	    try { leave(rooms.begin()->first); } catch (...) { }
 	}
 
 	XChatAPI s;
-	
+
 	int retries = servers.size();
 retry:
 	try {

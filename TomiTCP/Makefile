@@ -44,7 +44,7 @@ dep:
 	$(MAKEDEP)
 .depend:
 	$(MAKEDEP)
-	
+
 -include .depend
 
 MAKECONF=I=.conf-$$RANDOM.c; echo "main(){}" >$$I; \

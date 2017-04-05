@@ -267,7 +267,7 @@ namespace xchat {
 	public:
 	    vector<server> servers; ///< Array of xchat.cz clusters.
 	    int lastsrv; ///< Index of last cluster, used by #lastsrv_broke.
-	    
+
             void makeservers();
 	    int makesrv(server_type type);
 	    string lastsrv_broke();
@@ -309,7 +309,7 @@ namespace xchat {
 	    auto_ptr<Event> recvq_pop();
 	    string recode_to_client(string s);
 	    string recode_from_client(string s);
-      string gettoken(const string& rid);      
+      string gettoken(const string& rid);
 
 	    XChat(const string& user, const string& pass);
 	    ~XChat();
@@ -437,7 +437,7 @@ namespace xchat {
 
 	return e;
     }
-    
+
     /**
      * Shorthand for pushing a room message to the #sendq.
      * \param room Target room.
@@ -456,7 +456,7 @@ namespace xchat {
     inline void XChat::whisper(const string &room, const string &target, const string &msg) {
 	sendq.push_back(send_item(room, target, recode_from_client(msg)));
     }
-    
+
     /**
      * Shorthand for pushing a whisper message to the #sendq. The target room
      * will be determined in #do_sendq.

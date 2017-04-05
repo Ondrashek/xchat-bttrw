@@ -51,14 +51,14 @@ namespace net {
 	if (port < 1)
 	    port = 80;
     }
-            
+
     void TomiHTTP::doconnect(const string &host, int port) {
 	if (proxyhost && proxyport)
 	    connect(proxyhost, proxyport);
 	else
 	    connect(host, tostr<unsigned int>(port));
     }
-    
+
     void TomiHTTP::doGET(const string &host, int port, string path, TomiCookies* cookies)
     {
 	headers.clear();
@@ -83,7 +83,7 @@ namespace net {
 	fprintf(stream, "\r\n");
         fseek(stream, 0, SEEK_CUR);
     }
-            
+
     void TomiHTTP::doPOST(const string &host, int port, string path,
             const string& data, TomiCookies* cookies)
     {
@@ -167,7 +167,7 @@ namespace net {
 		}
 	    }
 	}
-	
+
 	return ret;
     }
 
@@ -246,7 +246,7 @@ namespace net {
 
 	return out;
     }
-    
+
     string TomiHTTP::URLdecode(const string& s)
     {
 	string out;

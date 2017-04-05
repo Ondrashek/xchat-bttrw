@@ -67,7 +67,7 @@ retry:
 
 	last_superadmins_reload = time(0);
     }
-    
+
     /**
      * Reload superadmins, check for changes and emit appropriate events.
      */
@@ -102,5 +102,5 @@ retry:
 	    e->removed = removed;
 	    recvq_push((auto_ptr<Event>) e);
 	}
-    }    
+    }
 }

@@ -31,7 +31,7 @@ namespace std {
 		    iconv)(conv, &msgptr, &fromsize, &resptr, &tosize) == (size_t)-1)
 	    {
 		int err = errno;
-		
+
 		// array is not big enough
 		if (err == E2BIG) {
 		    // add more characters to array
@@ -64,7 +64,7 @@ namespace std {
 	return ret;
     }
 
-    /* 
+    /*
      * Count number of real chars in UTF-8 string
      */
     unsigned int u8strlen(const char *c)
@@ -91,7 +91,7 @@ namespace std {
 
 	return tc - c;
     }
-    
+
     string _strprintf(const string &fmt, int argstart, ...)
     {
 	/* Guess we need no more than 200 bytes. */

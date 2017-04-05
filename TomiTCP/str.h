@@ -31,7 +31,7 @@ namespace std {
      */
     char char_toupper(char c);
     char char_tolower(char c);
-    
+
     inline string& strtolower(string &str)
     {
 	transform(str.begin(), str.end(), str.begin(), char_tolower);
@@ -83,7 +83,7 @@ namespace std {
 	s << a;
 	return s.str();
     }
-    
+
     /*
      * And an opposite, a string to something converter.
      */

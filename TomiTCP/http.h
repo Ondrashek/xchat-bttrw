@@ -26,7 +26,7 @@ namespace net {
 
 	    static string URLencode(const string& s);
 	    static string URLdecode(const string& s);
-	    
+
 	    static int g_http_conn_timeout, g_http_recv_timeout;
     };
 }

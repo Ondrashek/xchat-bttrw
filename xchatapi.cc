@@ -103,7 +103,7 @@ namespace net {
 		curl = curl_easy_init();
 		if (curl) {
 			curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-      curl_easy_setopt(curl, CURLOPT_USERAGENT, "bttrw/2.0");      
+      curl_easy_setopt(curl, CURLOPT_USERAGENT, "bttrw/2.0");
 			curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post.c_str());
 			curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 0L);
 			curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
@@ -179,10 +179,10 @@ namespace net {
 	}
 
 	int XChatAPI::getline(string& s, char delim)
-	{           
+	{
 		string ret;
-		s.clear();  
-    
+		s.clear();
+
     if (buffer.length() == 0) { return 0; }
 
 		string::size_type nl = buffer.find(delim);
@@ -192,13 +192,13 @@ namespace net {
 		s = buffer.substr(0, nl);
 		buffer.erase(0, nl+1);
 
-		return 1;  
-        
+		return 1;
+
 	}
 
 	void XChatAPI::close()
-	{ // empty	
+	{ // empty
     //buffer.clear();
   }
-  
+
 }

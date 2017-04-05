@@ -355,12 +355,12 @@ namespace xchat {
 	    c >>= 6;
 	    ret[1] = 0x80 | (c & 0x3f);
 	    c >>= 6;
-	    ret[0] = 0xe0 | (c & 0xf); 
+	    ret[0] = 0xe0 | (c & 0xf);
 	}
 
 	return ret;
     }
-    
+
     /**
      * Parse and convert one HTML entity.
      * \param input Pointer to the start of possible entity. It points to the
@@ -371,7 +371,7 @@ namespace xchat {
     {
 	if (*input != '&')
 	    return 0;
-	
+
 	bool valid = true;
 	unsigned value = 0;
 
@@ -437,7 +437,7 @@ namespace xchat {
 
 	if (*input == ';')
 	    input++;
-	
+
 	return strdup(ucs2_to_utf8(value).c_str());
     }
 

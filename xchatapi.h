@@ -6,7 +6,7 @@
 #include "TomiTCP/cookies.h"
 
 namespace net {
-	using namespace std;  
+	using namespace std;
 
 	class XChatAPI {
 	private:

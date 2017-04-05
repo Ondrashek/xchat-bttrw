@@ -198,7 +198,7 @@ namespace xchat {
 	string::size_type a;
 	if (src[0] == '[' && ((a = src.find(']')) != string::npos))
 	    src.erase(0, a + 1);
-	
+
 	if (target[0] == '[' && ((a = target.find(']')) != string::npos))
 	    target.erase(0, a + 1);
 
@@ -231,7 +231,7 @@ namespace xchat {
 		int smile = atoi(smile_s.c_str());
 		if (smile < smiles_count && smile >= 0 && smiles[smile]) {
 		    int add;
-		    
+
 		    if (convert_smiles == 2) {
 			string repl = string("\002") + smiles[smile] + "(" +
 			    smile_s + ")\002";
@@ -242,7 +242,7 @@ namespace xchat {
 	    		s.replace(a, b - a + 1, repl);
 			add = repl.length();
 		    }
-		    
+
 		    if (s[a + add] != ' ') {
 			s.insert(a + add, " ");
 			add++;
@@ -275,7 +275,7 @@ namespace xchat {
     {
 	string::size_type a,b;
 	if ((a = m.find("U¾ivatel")) != string::npos &&
-		(((b = m.find("vstoupil  do místnosti")) != string::npos) || 
+		(((b = m.find("vstoupil  do místnosti")) != string::npos) ||
 		 ((b = m.find("vstoupila do místnosti")) != string::npos))) {
 	    if (m.find("U¾ivatelka") != string::npos) {
 		src = string(m, a + sizeof("U¾ivatelka ") - 1, b - a - sizeof("U¾ivatelka ") + 1);
@@ -307,7 +307,7 @@ namespace xchat {
     {
 	string::size_type a,b;
 	if ((a = m.find("U¾ivatel")) != string::npos &&
-		(((b = m.find("opustil  místnost")) != string::npos) || 
+		(((b = m.find("opustil  místnost")) != string::npos) ||
 		 ((b = m.find("opustila místnost")) != string::npos))) {
 	    if (m.find("U¾ivatelka") != string::npos) {
 		src = string(m, a + sizeof("U¾ivatelka ") - 1, b - a - sizeof("U¾ivatelka ") + 1);
@@ -358,7 +358,7 @@ namespace xchat {
 		who = string(m, a + sizeof("správcem ") - 1, b - a - sizeof("správcem ") + 1);
 		wstrip(who);
 	    }
-	    
+
 	    if ((a = m.find("administrátorem")) != string::npos &&
 		    (b = m.find("z místnosti")) != string::npos) {
 		who = string(m, a + sizeof("administrátorem ") - 1,
@@ -405,7 +405,7 @@ namespace xchat {
 		src = string(m, a + sizeof("U¾ivatel ") - 1, b - a - sizeof("U¾ivatel ") + 1);
 		wstrip(src);
 	    }
- 
+
 	    if ((a = m.find("administrátorem")) != string::npos &&
 		    (b = m.find("ze v¹ech místností")) != string::npos) {
 		who = string(m, a + sizeof("administrátorem ") - 1,
@@ -524,7 +524,7 @@ namespace xchat {
 	stripjsescapes(m);
 	striphtml(m);
 	striphtmlent(m);
-	
+
 	string date;
 	getdate(m, date);
 
@@ -652,7 +652,7 @@ namespace xchat {
 	stripjsescapes(m);
 	striphtml(m);
 	striphtmlent(m);
-	
+
 	string date;
 	getdate(m, date);
 

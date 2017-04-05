@@ -34,7 +34,7 @@ namespace net {
      * We don't want to break while (getline()), so g_recv_timeout is zero.
      */
     int TomiTCP::g_conn_timeout = 120, TomiTCP::g_recv_timeout = 0;
-    
+
     int thread_init_tmp = thread_init();
     int thread_init()
     {
@@ -87,7 +87,7 @@ namespace net {
 	if (netsock < 0 && (sock_errno == EINVAL || sock_errno == EAFNOSUPPORT) && addr == "::") {
                 lname.sin.sin_family = AF_INET;
                 lname.sin.sin_addr.s_addr = INADDR_ANY;
-                
+
                 netsock = ::socket(PF_INET, SOCK_STREAM, 0);
         }
 	if (netsock < 0) {
@@ -239,7 +239,7 @@ namespace net {
     void resolve(const string& hostname, const string& service, vector<sockaddr_uni> &addrs) {
 	struct addrinfo *ai,*aip,hints;
 	int ret;
-	
+
 	sockaddr_uni rname;
 
 	memset(&hints,0,sizeof(hints));
@@ -336,7 +336,7 @@ namespace net {
 	    throw runtime_error("fdopen: " + string(strerror(er)));
 	}
 	setvbuf(ret->stream,NULL,_IONBF,0); // no buffering
-	
+
 	return ret;
     }
 
@@ -378,7 +378,7 @@ namespace net {
 	int oldflags = fcntl(sock, F_GETFL, 0);
 	if (oldflags == -1)
 	    throw runtime_error(strerror(errno));
-	
+
 	if (value != 0)
 	    oldflags |= O_NONBLOCK;
 	else
@@ -388,7 +388,7 @@ namespace net {
 	    throw runtime_error(strerror(errno));
 #endif
     }
-    
+
     string tomi_ntop(const sockaddr_uni& name)
     {
         if (name.sa.sa_family == 0)
@@ -416,7 +416,7 @@ namespace net {
 
 	return string(tmp);
     }
-    
+
     void tomi_pton(string p, sockaddr_uni& name)
     {
 	if (name.sa.sa_family == AF_INET6 && p.length() &&
@@ -436,7 +436,7 @@ namespace net {
 	    throw runtime_error("Not a valid address");
 #endif
     }
-    
+
     string revers(const sockaddr_uni& name)
     {
 	char hostname[NI_MAXHOST];
@@ -486,7 +486,7 @@ namespace net {
 	}
         return TEMP_FAILURE_RETRY(select(filedes + 1, 0, &set, 0, to));
     }
-    
+
     int connect_timeout(int filedes, millitime_t ms)
     {
 	fd_set wset, eset;

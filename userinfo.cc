@@ -38,7 +38,7 @@ retry1:
 	if (!s.getline(l))
 	    return out;
 	out.name = recode_to_client(chomp(l));
-	
+
 	if (!s.getline(l))
 	    throw runtime_error("User info is not complete.");
 	out.surname = recode_to_client(chomp(l));
@@ -54,13 +54,13 @@ retry1:
 	if (!s.getline(l))
 	    throw runtime_error("User info is not complete.");
 	out.sex = (l == "0") ? 1 : 0;
-	
+
 	if (!s.getline(l))
 	    throw runtime_error("User info is not complete.");
 	out.star = atoi(l.c_str());
 	if (out.star < 0 || out.star > 5)
 	    throw("Bad star ID, please contact developer team!");
-	
+
 	if (!s.getline(l))
 	    throw runtime_error("User info is not complete.");
 	out.email = recode_to_client(chomp(l));
@@ -107,7 +107,7 @@ retry2:
 	    } else
 		throw runtime_error(string(e.what()) + " - " + lastsrv_broke());
 	}
-	
+
 	if (!s.getline(l))
 	    throw runtime_error("Channel list is not complete.");
 	int count = atoi(l.c_str());
@@ -115,9 +115,9 @@ retry2:
 	for (int i = 0; i < count; i++) {
 	    if (!s.getline(l))
 		throw runtime_error("Channel list is not complete.");
-	    
+
 	    userinfo_room room;
-	    
+
 	    room.rid = string(l, 0, l.find(' '));
 	    l.erase(0, room.rid.length());
 	    l.erase(0, l.find_first_not_of(' '));

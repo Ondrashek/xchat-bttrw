@@ -23,7 +23,7 @@ dep:
 	$(MAKEDEP)
 .depend:
 	$(MAKEDEP)
-	
+
 -include .depend
 
 clean:

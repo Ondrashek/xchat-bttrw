@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 	string s;
 	getline(cin,s);*/
 	//cout << a.ident() << endl;
-	
+
 	//cout << recode("Tomáš Janoušek","utf-8","iso-8859-2") << endl;
 	/*
 	net::TomiTCP t("localhost", 1025);

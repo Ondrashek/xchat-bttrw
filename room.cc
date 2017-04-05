@@ -65,7 +65,7 @@ namespace xchat {
 
   if(rid != "")
   {
-  
+
 
 	r.l = -1;
 	r.rid = rid;
@@ -89,7 +89,7 @@ retry0:
 	    } else
 		throw runtime_error(string(e.what()) + " - " + lastsrv_broke());
 	}
-	
+
 	bool captcha = false, password = false;
 	while (s.getline(l)) {
 	    if (tryagainplease(l)) {
@@ -122,10 +122,10 @@ retry0:
 	    }
 	}
 	s.close();
-	
+
 	if (!captcha && !password && ret != 302 && rid != "")
 	    throw runtime_error("Not HTTP 302 Found while accepting channel rules");
-	
+
 	/*
 	 * Join room.
 	 */
@@ -142,7 +142,7 @@ retry1:
 		goto retry1;
 	    } else
 		throw runtime_error(string(e.what()) + " - " + lastsrv_broke());
-	}              
+	}
 	while (s.getline(l)) {
 	    static string pat1 = "<h3 class=\"hdrsuccess\">", pat2 = "</h3>";
 	    string::size_type a, b;
@@ -164,7 +164,7 @@ retry1:
 	    }
 	}
 	s.close();
-	
+
 	/*
 	 * Get last_line, history, current admin and locked status.
 	 */
@@ -242,8 +242,8 @@ retry2:
 	// insert it
 	rooms[rid] = r;
     }
-    
-   } 
+
+   }
 
     /**
      * Leave room.
@@ -252,12 +252,12 @@ retry2:
     void XChat::leave(string rid)
     {
 	rooms.erase(rid);
-	
+
 	XChatAPI s;
 
 	int retries = servers.size();
 retry:
-	try {		
+	try {
 	    int ret = request_GET(s, SERVER_MODCHAT,
 		    "modchat?op=mainframeset&skin=2&js=1&menuaction=leave&"
 		    "leftroom=" + rid, PATH_AUTH);
@@ -296,7 +296,7 @@ retry:
     {
 	XChatAPI s;
 	string l;
-  
+
   if(r.rid != "")
   {
 
@@ -356,7 +356,7 @@ retry:
 
 	if (!s.getline(l)) /* Perm Admins */
 	     throw runtime_error("Getting room info error.");
-	
+
 	wstrip(l);
 	stringstream ss(l);
 	string admin;
@@ -376,9 +376,9 @@ retry:
 	    } else
 		throw runtime_error("No roominfo - " + lastsrv_broke());
 	}
-  
+
   }
-  
+
     }
 
     /**
@@ -390,10 +390,10 @@ retry:
     void XChat::getmsg(room& r, bool first)
     {
 	XChatAPI s;
-  
+
   if(r.rid != "")
   {
-    
+
 	int ret;
 	int retries = servers.size();
 retry:
@@ -487,7 +487,7 @@ retry:
 		    }
 		}
 	    }
-   
+
 
 	    /*
 	     * Check for current admin and locked status
@@ -625,25 +625,25 @@ retry:
 	    } else
 		throw runtime_error(recode_to_client(kickmsg));
 	} else if (r.l == -1) {
-	    /* 
+	    /*
        * after migration server with this condition got parse error
        * removed RoomErrorMsg and replaced with join for re-join
        */
-      if (!first) { 
+      if (!first) {
         if(r.rid != "")
-        {       
+        {
 		     join(r.rid);
 		     auto_ptr<EvRoomSysMsg> e(new EvRoomSysMsg);
 		     e->s = recode_to_client("Parse error - znovu jsem se pøipojil");
 		     e->rid = r.rid;
-		     recvq_push((auto_ptr<Event>) e); 
-        }       
+		     recvq_push((auto_ptr<Event>) e);
+        }
 	    } else
 		throw runtime_error(lastsrv_broke());
 	}
     }
-    
-   } 
+
+   }
 
     /**
      * Send a message.
@@ -661,7 +661,7 @@ retry:
 		    "modchat", PATH_AUTH,
 		    "op=textpageng&js=1&skin=2&rid=" + r.rid +
 		    "&textarea=" + TomiHTTP::URLencode(msg) +
-		    "&wtkn=" + TomiHTTP::URLencode(token) +        
+		    "&wtkn=" + TomiHTTP::URLencode(token) +
 		    "&target=" + TomiHTTP::URLencode(target), "");
 	    if (ret != 200)
 		throw runtime_error("Not HTTP 200 Ok while posting msg");
@@ -738,7 +738,7 @@ retry:
 	 *  and
 	 *  - it does not begin with "/" and it does not begin with a
 	 *    nonprintable character
-	 */  
+	 */
 	last_sent = time(0);
 	if (msg.length() && msg[0] != '/' && isprint(msg[0])) {
 	    r.last_sent = last_sent;
@@ -772,7 +772,7 @@ retry:
 	    } else
 		throw runtime_error(string(e.what()) + " - " + lastsrv_broke());
 	}
-	
+
 	/*
 	 * TODO: detect it somehow, cos it's probably not tryagainplease...
 	 */

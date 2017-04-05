@@ -40,7 +40,7 @@ ifneq (,$(findstring -apple-,$(TARGET)))
  LDFLAGS += -fexceptions
 endif
 
-LDLIBS += -lcurl 
+LDLIBS += -lcurl
 LDLIBS += -liconv
 
 .PHONY: all clean dep conf dummy buildw32 docs

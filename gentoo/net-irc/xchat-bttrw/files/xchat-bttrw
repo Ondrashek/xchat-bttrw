@@ -5,20 +5,20 @@ opts="${opts} stopall"
 depend() {
 	after net
 }
- 
+
 start() {
 
 	ebegin "Starting xchat-bttrw"
 
 	PARAMS=""
-	
+
 	if [ -z "$PORT" ]; then
 		eerror "You must set PORT variable in /etc/conf.d/xchat-bttrw!"
 	else
 		PARAMS="$PARAMS --port $PORT"
 	fi
-	
-	if [ "$PROXYHOST" ] && [ "$PROXYPORT" ]; then 
+
+	if [ "$PROXYHOST" ] && [ "$PROXYPORT" ]; then
 		einfo "Using proxy $PROXYHOST:$PROXYPORT"
 		export PROXYHOST="$PROXYHOST"
 		export PROXYPORT="$PROXYPORT"
@@ -26,7 +26,7 @@ start() {
 
 	if [ "$BIND" ]; then PARAMS="$PARAMS --bind $BIND"; fi
 	if [ "$LOG" ]; then PARAMS="$PARAMS --log $LOG"; fi
-	if [ "$RESTRICT" ]; then 
+	if [ "$RESTRICT" ]; then
 		PARAMS="$PARAMS --restrict $RESTRICT"
 		einfo "Using restrict list in $RESTRICT"
 	fi
@@ -37,7 +37,7 @@ start() {
 	eend $?
 
 }
- 
+
 stop() {
 	ebegin "Stopping xchat-bttrw"
 	start-stop-daemon --stop --quiet --pidfile /var/run/xchat-bttrw.pid
@@ -45,8 +45,8 @@ stop() {
 }
 
 stopall() {
-	stop 
-	
+	stop
+
 	ebegin "Stopping all xchat-bttrw process"
 	/bin/killall xchat-bttrw
 	eend $?

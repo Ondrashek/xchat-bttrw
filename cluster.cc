@@ -82,13 +82,13 @@ namespace xchat {
 		e->s = "Server " + tomi_ntop(servers[lastsrv].host) + " is having a rest.";
 		recvq_push((auto_ptr<Event>) e);
 	    }
-            
+
             return tomi_ntop(servers[lastsrv].host);
 	}
 
         return "";
     }
-	    
+
     /**
      * Get a random working server for a given server type. Unrest servers
      * when the time comes or when no server is available.
@@ -163,13 +163,13 @@ namespace xchat {
         int si = makesrv(st);
         server &ss = servers[si];
         string url = "https://" + ss.types[st] + makepath(path, pt);
-	      
+
         long r = s.GET(url, &cookies);
         s.parseresponse(&cookies);
 		    return (int)r;
 
     }
-    
+
     /**
      * Do a POST request...
      */

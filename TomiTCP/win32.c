@@ -21,7 +21,7 @@ static int w32hack_open_osfhandle(intptr_t osfhandle, int flags);
 int winver(void)
 {
     OSVERSIONINFO osvi;
-    
+
     if (winver_major != 0 || winver_minor != 0)
 	return 0;
 

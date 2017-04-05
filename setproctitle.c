@@ -60,7 +60,7 @@ void compat_init_setproctitle(int argc, char *argv[])
 
     /*
      * NB: This assumes that argv has already been copied out of the
-     * way. This is true for sshd, but may not be true for other 
+     * way. This is true for sshd, but may not be true for other
      * programs. Beware.
      */
 
@@ -76,7 +76,7 @@ void compat_init_setproctitle(int argc, char *argv[])
     }
 
     /*
-     * Find the last argv string or environment variable within 
+     * Find the last argv string or environment variable within
      * our process memory area.
      */
     for (i = 0; i < argc; i++) {
@@ -92,8 +92,8 @@ void compat_init_setproctitle(int argc, char *argv[])
     argv_start = argv[0];
     argv_env_len = lastargv - argv[0] - 1;
 
-    /* 
-     * Copy environment 
+    /*
+     * Copy environment
      * XXX - will truncate env on strdup fail
      */
     for (i = 0; envp[i] != NULL; i++)
