@@ -183,10 +183,10 @@ void welcome()
 void reload_voiced_girls(auto_ptr<XChat> &x, auto_ptr<TomiTCP> &c,
 	bool voiced_girls)
 {
-    string tmp;	
+    string tmp;
     nicklist_t::iterator j;
     int k;
-    
+
     for (rooms_t::iterator i = x->rooms.begin();
 	    i != x->rooms.end(); i++) {
 	for (k = 1, tmp.clear(), j = i->second.nicklist.begin();
@@ -284,7 +284,7 @@ void serve_client(TomiTCP *cptr)
 			 */
 			continue;
 		    }
-		    
+
 		    if (user && nick.length()) {
 			if (!pass.length()) {
 			    fprintf(*c, ":%s NOTICE AUTH :Need password!\r\n", me);
@@ -342,7 +342,7 @@ void serve_client(TomiTCP *cptr)
 					motd.c_str());
 			}
 
-			fprintf(*c, ":%s 376 %s :Web login: %s\r\n",
+			fprintf(*c, ":%s 372 %s :Web login: %s\r\n",
 			    me, nick.c_str(),
 			    x->makepath("", PATH_STATIC).c_str());
 
@@ -656,31 +656,31 @@ void serve_client(TomiTCP *cptr)
                             x_nick n;
                             n.nick = us.nick;
                             n.sex = us.sex;
-                            
+
                             string info = us.name;
-                            
+
                             if (us.surname != "") {
                                 if (info != "")
                                     info += " ";
                                 info += us.surname;
                             }
-                            
+
                             if (us.age != 0) {
                                 if (info != "")
                                     info += " ";
                                 info += "(" + tostr<int>(us.age) + ")";
                             }
-                            
+
                             if (us.email != "") {
                                 if (info != "")
                                     info += " ";
                                 info += "(" + us.email + ")";
                             }
-                            
+
                             if (info != "")
                                 info += " ";
                             info += "last: " + us.last_online + ", ";
-                            
+
                             info += "wasted: " +
                                 tostr_float<double>(us.time_wasted / 3600.0, 2) +
                                 " h, ";
@@ -769,7 +769,7 @@ void serve_client(TomiTCP *cptr)
 				cmd[1].c_str());
 		    else
 			fprintf(*c, ":%s 332 %s #%s :%s\r\n", me, nick.c_str(), cmd[1].c_str(),
-				(x->rooms[cmd[1]].name + " | " + 
+				(x->rooms[cmd[1]].name + " | " +
 				 x->rooms[cmd[1]].desc + " | " +
 				 x->rooms[cmd[1]].web).c_str());
 		} else if (cmd[0] == "TOPIC" && cmd.size() >= 3) {
@@ -824,7 +824,7 @@ void serve_client(TomiTCP *cptr)
 		    try {
 			listout_t listout;
 			int type = ROOM_REGISTERED + ROOM_TEMPORARY;
-			
+
 			if (cmd.size() > 1) {
 			    strtoupper(cmd[1]);
 			    if (cmd[1] == "R")
@@ -832,9 +832,9 @@ void serve_client(TomiTCP *cptr)
 			    else if (cmd[1] == "T")
 				type = ROOM_TEMPORARY;
 			}
-			
+
 			x->list(listout, type);
-			
+
 			for (listout_t::iterator i = listout.begin();
 				i != listout.end(); i++) {
 			    fprintf(*c, ":%s 322 %s #%s %i :%s\r\n", me, nick.c_str(),
@@ -917,7 +917,7 @@ void serve_client(TomiTCP *cptr)
 		    for (vector<server>::iterator i = x->servers.begin();
 				i != x->servers.end(); i++) {
     			string last_break;
-			
+
 			if (i->last_break) {
 			    char lb[128];
 			    struct tm lt;
@@ -925,7 +925,7 @@ void serve_client(TomiTCP *cptr)
     			    if (!plt)
 		        	throw runtime_error(strerror(errno));
     			    strftime(lb, 128, "%F %H:%M:%S", &lt);
-			    
+
 			    last_break = " | Last break: " + string(lb) + " (" +
 				tostr<int>(time(0) - i->last_break) + " sec)";
 			}
@@ -937,7 +937,7 @@ void serve_client(TomiTCP *cptr)
                                 hosts += ", ";
                             hosts += j->second;
                         }
-			
+
 			fprintf(*c, ":%s 015 %s :%s | Breaks: %d (%d total)%s%s | Vhosts: %s\r\n",
 			    me, nick.c_str(),
 			    tomi_ntop(i->host).c_str(), i->break_count,
@@ -951,7 +951,7 @@ void serve_client(TomiTCP *cptr)
 		    if (cmd.size() == 2 && cmd[1] != "")
 			fprintf(*c, ":%s 306 %s :You have been marked as being away\r\n",
 			        me, nick.c_str());
-		    else 
+		    else
 			fprintf(*c, ":%s 305 %s :You are no longer marked as being away\r\n",
 			        me, nick.c_str());
 		} else {
@@ -1040,7 +1040,7 @@ void serve_client(TomiTCP *cptr)
 				me, f->getrid().c_str(), mode.c_str(),
 				f->getsrc().nick.c_str(), ((mode.length() == 2)?" ":""),
 				((mode.length() == 2)?f->getsrc().nick.c_str():""));
-		    
+
 		} else if (dynamic_cast<EvRoomLeave*>(e.get())) {
 		    auto_ptr<EvRoomLeave> f((EvRoomLeave*)e.release());
 
@@ -1152,9 +1152,9 @@ void serve_client(TomiTCP *cptr)
 				f->getlink().c_str());
 		} else if (dynamic_cast<EvRoomTopicChange*>(e.get())) {
 		    auto_ptr<EvRoomTopicChange> f((EvRoomTopicChange*)e.release());
-		
+
 		    fprintf(*c, ":%s TOPIC #%s :%s\r\n", me, f->getrid().c_str(),
-    			(f->getname() + " | " + f->getdesc() + " | " + 
+    			(f->getname() + " | " + f->getdesc() + " | " +
 			 f->getweb()).c_str());
 		} else if (dynamic_cast<EvRoomOther*>(e.get())) {
 		    auto_ptr<EvRoomOther> f((EvRoomOther*)e.release());
@@ -1177,7 +1177,7 @@ void serve_client(TomiTCP *cptr)
 			    nick.c_str(), date.c_str(), f->str().c_str());
 		} else if (dynamic_cast<EvNote*>(e.get())) {
 		    auto_ptr<EvNote> f((EvNote*)e.release());
-    
+
                     if (x->rooms.size()) {
 			for (rooms_t::iterator i = x->rooms.begin();
 			    i != x->rooms.end(); i++)
