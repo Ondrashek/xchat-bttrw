@@ -41,7 +41,10 @@ ifneq (,$(findstring -apple-,$(TARGET)))
 endif
 
 LDLIBS += -lcurl 
-LDLIBS += -liconv
+
+ifeq ($(ICONV),external)	
+ LDLIBS += -liconv	
+endif
 
 .PHONY: all clean dep conf dummy buildw32 docs
 
