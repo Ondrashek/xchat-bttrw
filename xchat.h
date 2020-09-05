@@ -308,7 +308,6 @@ namespace xchat {
 	    void recvq_parse_push_history(string m, room& r);
 	    auto_ptr<Event> recvq_pop();
 	    string recode_to_client(string s);
-	    string recode_utf8_to_client(string s);
 	    string recode_from_client(string s);
       string gettoken(const string& rid);      
 

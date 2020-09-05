@@ -40,37 +40,6 @@ namespace xchat {
     }
 
     /**
-     * Recode from UTF-8 to #client_charset.
-     * \param s Input string.
-     * \return Recoded string if ok, original string if an error has occured.
-     */
-    string XChat::recode_utf8_to_client(string s) {
-	if (!client_charset.length())
-	    return s;
-
-	try {
-	    /*
-	     * Some exceptions...
-	     */
-	    if (client_charset != "UTF-8") {
-		string::size_type a, pos = 0;
-
-		while ((a = s.find("\xe2\x97\x8f", pos)) != string::npos) {
-		    s.replace(a, 3, "*");
-		    pos = a + 1;
-		}
-	    }
-
-	    return recode(s, "UTF-8", client_charset);
-	} catch (runtime_error &er) {
-	    auto_ptr<EvError> e(new EvError);
-	    e->s = er.what();
-	    recvq_push((auto_ptr<Event>) e);
-	    return s;
-	}
-    }
-
-    /**
      * Recode from #client_charset to ISO-8859-2.
      * \param s Input string.
      * \return Recoded string if ok, original string if an error has occured.

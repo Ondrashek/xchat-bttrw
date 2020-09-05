@@ -71,6 +71,6 @@ retry:
 
 	sort(listout.begin(), listout.end(), stringcmp);
 	for (listout_t::iterator i = listout.begin(); i != listout.end(); i++)
-	    i->name = recode_utf8_to_client(i->name);
+	    i->name = recode_to_client(i->name);
     }
 }
