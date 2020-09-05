@@ -337,13 +337,13 @@ retry:
 	if (!s.getline(l)) /* Room Name */
 	    throw runtime_error("Getting room info error.");
 	wstrip(l);
-	r.name = recode_to_client(l);
+	r.name = recode_utf8_to_client(l);
 
 	if (!s.getline(l)) /* Room description */
 	     throw runtime_error("Getting room info error.");
 	wstrip(l);
 	unsmilize(l);
-	r.desc = recode_to_client(l);
+	r.desc = recode_utf8_to_client(l);
 
 	if (!s.getline(l)) /* Creating date */
 	     throw runtime_error("Getting room info error.");
@@ -367,7 +367,7 @@ retry:
 	if (!s.getline(l)) /* Room web */
 	     throw runtime_error("Getting room info error.");
 	wstrip(l);
-	r.web = recode_to_client(l);
+	r.web = recode_utf8_to_client(l);
 
 	if (!r.name.length() && !r.desc.length() && !r.admins.size()) {
 	    if (retries--) {
